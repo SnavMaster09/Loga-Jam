@@ -6,17 +6,26 @@ public class Player_Manager : MonoBehaviour
 {
 
     public static bool activeCombat;
-    public bool switcher;
 
-    // Start is called before the first frame update
+    private int maxHealth = 100;
+    public static int health;
+
     void Start()
     {
-        activeCombat = true;
+        activeCombat = false;
+        health = maxHealth;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //activeCombat = switcher;
+        Debug.Log(health);
+    }
+
+    public void takeDamage(int damage)
+    {
+        health = health - damage;
+        if (health < 0)
+            Debug.Log("Dead");
     }
 }

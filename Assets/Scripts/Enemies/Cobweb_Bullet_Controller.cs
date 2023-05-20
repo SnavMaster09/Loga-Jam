@@ -6,6 +6,7 @@ public class Cobweb_Bullet_Controller : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody2D rb;
+    public int bulletDamage = 10;
     public float force;
 
     // Start is called before the first frame update
@@ -26,6 +27,10 @@ public class Cobweb_Bullet_Controller : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Player")
+        {
+            FindAnyObjectByType<Player_Manager>().takeDamage(bulletDamage);
+        }
         Destroy(gameObject);
     }
 }

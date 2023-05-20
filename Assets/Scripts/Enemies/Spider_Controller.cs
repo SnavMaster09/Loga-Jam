@@ -9,6 +9,8 @@ public class Spider_Controller : MonoBehaviour
     public Spider_Shooter shooterScript;
 
     public float speed = 3f;
+    public int biteDamage = 10;
+
     public float step;
     private Transform target;
     private bool canFollow = true;
@@ -43,11 +45,16 @@ public class Spider_Controller : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (speed > 0)
+
+        if(collision.gameObject.tag == "Player")
         {
-            speed = -speed;
+            FindAnyObjectByType<Player_Manager>().takeDamage(biteDamage);
+            if (speed > 0)
+            {
+                speed = -speed;
+            }
         }
+        
         
         
     }

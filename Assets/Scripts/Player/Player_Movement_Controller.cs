@@ -23,61 +23,12 @@ public class Player_Movement_Controller : MonoBehaviour
     void Update()
     {
 
-
-        {
-            /*
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-
-            if (rb.velocity.y > 0)
-            {
-                animator.SetBool("runUp", true);
-                animator.SetBool("runDown", false);
-                animator.SetBool("runRight", false);
-                animator.SetBool("runLeft", false);
-                animator.SetBool("idle", false);
-
-            }
-            else if (rb.velocity.y < 0)
-            {
-                animator.SetBool("runDown", true);
-                animator.SetBool("runUp", false);
-                animator.SetBool("runRight", false);
-                animator.SetBool("runLeft", false);
-                animator.SetBool("idle", false);
-            }
-            else if (rb.velocity.x > 0)
-            {
-                animator.SetBool("runRight", true);
-                animator.SetBool("runLeft", false);
-                animator.SetBool("runDown", false);
-                animator.SetBool("runUp", false);
-                animator.SetBool("idle", false);
-            }
-            else if (rb.velocity.x < 0)
-            {
-                animator.SetBool("runRight", false);
-                animator.SetBool("runLeft", true);
-                animator.SetBool("runDown", false);
-                animator.SetBool("runUp", false);
-                animator.SetBool("idle", false);
-            }
-            else
-            {
-                animator.SetBool("idle", true);
-            }*/
-        }//rough animations
-        
-
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         Flip();
         VelocityStates();
-
-        Debug.Log((int)state);
-
-
+        
     }
 
     private void FixedUpdate()
@@ -91,7 +42,6 @@ public class Player_Movement_Controller : MonoBehaviour
     {
         if(isFacingRight && movement.x < 0f || !isFacingRight && movement.x > 0f)
         {
-            Debug.Log(1);
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
@@ -103,22 +53,22 @@ public class Player_Movement_Controller : MonoBehaviour
     {
 
 
-        if (movement.x > 0)
+        if (movement.x > 0 && movement.y == 0)
             state = State.runSide;
-        else if (movement.x < 0)
+        else if (movement.x < 0 && movement.y == 0)
             state = State.runSide;
-        else if (movement.y < 0)
+        else if (movement.y > 0 && movement.x > 0)
+            state = State.runBackSide;
+        else if (movement.y > 0 && movement.x < 0)
+            state = State.runBackSide;
+        else if (movement.y < 0 && movement.x > 0)
+            state = State.runFrontSide;
+        else if (movement.y < 0 && movement.x < 0)
+            state = State.runFrontSide;
+        else if (movement.y < 0 && movement.x == 0)
             state = State.runFront;
-        else if (movement.y > 0)
+        else if (movement.y > 0 && movement.x == 0)
             state = State.runBack;
-        else if (movement.x > 0 && movement.y > 0)
-            state = State.runBackSide;
-        else if (movement.x > 0 && movement.y < 0)
-            state = State.runBackSide;
-        else if (movement.x < 0 && movement.y > 0)
-            state = State.runFrontSide;
-        else if (movement.x < 0 && movement.y < 0)
-            state = State.runFrontSide;
         else state = State.idle;
 
         anim.SetInteger("state", (int)state);
