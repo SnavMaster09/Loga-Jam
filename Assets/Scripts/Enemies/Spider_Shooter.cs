@@ -35,7 +35,7 @@ public class Spider_Shooter : MonoBehaviour
             if(timer > 3)
             {
                 timer = 0;
-                Debug.Log(1);
+                
                 Shoot();
             }
         }
