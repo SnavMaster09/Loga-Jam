@@ -107,6 +107,11 @@ public class Player_Movement_Controller : MonoBehaviour
             state = State.runSide;
         else if (movement.x < 0)
             state = State.runSide;
+        else if (movement.y < 0)
+            state = State.runFront;
+        else if (movement.y > 0)
+            state = State.runBack;
+        else if(movement.x > 0 && movement.y > 0)
         else state = State.idle;
 
         anim.SetInteger("state", (int)state);
