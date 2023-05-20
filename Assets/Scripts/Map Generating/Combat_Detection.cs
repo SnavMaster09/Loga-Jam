@@ -13,7 +13,7 @@ public class Combat_Detection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Player_Manager.activeCombat);
+        //Debug.Log(Player_Manager.activeCombat);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
