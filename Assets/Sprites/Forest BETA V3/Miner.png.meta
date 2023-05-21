@@ -120,13 +120,13 @@ TextureImporter:
       name: Miner_0
       rect:
         serializedVersion: 2
-        x: 66
+        x: 0
         y: 0
         width: 22
         height: 25
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 22, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91f4d7199430e4b8b8193bfa36e8593c
-      internalID: 1306542664
+      spriteID: 63b6826838ee047d1b3177ee155b6d1d
+      internalID: 700089945
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 660b1c30352b04a31b66a6e295eb0070
-      internalID: 427716113
+      spriteID: 2406a236d86ea40488d526fbbbabc97f
+      internalID: 925330108
       vertices: []
       indices: 
       edges: []
@@ -183,7 +183,7 @@ TextureImporter:
       name: Miner_3
       rect:
         serializedVersion: 2
-        x: 0
+        x: 66
         y: 0
         width: 22
         height: 25
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd5984f422c34480e89f74f550808de8
-      internalID: -171575762
+      spriteID: e207ecaa8560648a7b06262b2c8d5ea6
+      internalID: 874369871
       vertices: []
       indices: 
       edges: []
@@ -212,9 +212,9 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Miner_0: 1764366185
-      Miner_1: 1306542664
-      Miner_2: 427716113
-      Miner_3: -171575762
+      Miner_1: 700089945
+      Miner_2: 925330108
+      Miner_3: 874369871
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
