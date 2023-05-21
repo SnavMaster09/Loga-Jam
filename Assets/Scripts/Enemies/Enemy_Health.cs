@@ -22,14 +22,20 @@ public class Enemy_Health : MonoBehaviour
     public  void takeDamage(int damage)
     {
         spiderControllerScript.canDealDamage = false;
+        spiderControllerScript.switchColor();
         health = health - damage;
         if (health <= 0)
+        {
+            spiderControllerScript.state = Spider_Controller.State.die;
             StartCoroutine(Die());
+        }
+         
     }
 
     private IEnumerator Die()
     {
-        yield return new WaitForSeconds(0.25f);
+        
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
    
