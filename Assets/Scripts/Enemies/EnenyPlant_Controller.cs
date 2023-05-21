@@ -50,10 +50,10 @@ public class EnenyPlant_Controller : MonoBehaviour
     private IEnumerator activeAttack()
     {
         isAttacking = true;
-        attackColl.enabled = true;
-        yield return new WaitForSeconds(0.75f);
+        //attackColl.enabled = true;
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
-        attackColl.enabled = false;
+        //attackColl.enabled = false;
     }
 
    

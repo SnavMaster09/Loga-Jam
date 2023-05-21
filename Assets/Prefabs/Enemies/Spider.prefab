@@ -305,6 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a136371f30c49d5a14328e662e2b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 20
+  health: 20
   coins: 2
-  bigMama: {fileID: 4112455632028507519}
+  type: 1
+  toBeDestroyed: {fileID: 4112455632028507519}
+  spr: {fileID: 8930968263237924357}
   spiderControllerScript: {fileID: 8930968263237924363}

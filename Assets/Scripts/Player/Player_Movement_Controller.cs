@@ -36,7 +36,7 @@ public class Player_Movement_Controller : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        //Debug.Log(state);
+        
 
         Flip();
         VelocityStates();
