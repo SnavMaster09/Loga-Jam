@@ -9,17 +9,20 @@ public class Spider_Controller : MonoBehaviour
     public Spider_Shooter shooterScript;
     public Enemy_Health enemyHealthScript;
 
+    private bool isFacingRight = true;
 
     public float speed = 3f;
     public int biteDamage = 10;
 
     public float step;
     private Transform target;
+    public Animator anim;
+    public SpriteRenderer spr;
     private bool canFollow = true;
 
     public bool canDealDamage = true;
 
-    public enum State {chase,flee,idle};
+    public enum State {chase,flee,idle,die};
     public State state;
 
     
@@ -61,11 +64,20 @@ public class Spider_Controller : MonoBehaviour
                 speed = -speed;
             }
         }
-        
-        
-        
     }
 
+    private void Flip()
+    {
+        /*
+        if (isFacingRight && target.transform.position.x - transform.position.x < 0f || !isFacingRight && target.transform.position.x - transform.position.x > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+        */
+    }
 
 
     private void Update()
@@ -75,6 +87,11 @@ public class Spider_Controller : MonoBehaviour
 
         if (state == State.idle)
             canDealDamage = true;
+
+        anim.SetInteger("state", (int)state);
+        Flip();
+
+
     }
 
     private void SpiderChaser()
@@ -95,6 +112,18 @@ public class Spider_Controller : MonoBehaviour
         {
             state = State.flee;
         }
+    }
+
+    public void switchColor()
+    {
+        StartCoroutine(colorS());
+    }
+
+    private IEnumerator colorS()
+    {
+        spr.color = Color.red;
+        yield return new WaitForSeconds(0.75f);
+        spr.color = Color.white;
     }
 
 }

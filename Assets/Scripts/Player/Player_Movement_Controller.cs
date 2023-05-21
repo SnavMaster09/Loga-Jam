@@ -36,7 +36,7 @@ public class Player_Movement_Controller : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        //Debug.Log(state);
+        
 
         Flip();
         VelocityStates();
@@ -63,7 +63,7 @@ public class Player_Movement_Controller : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 direction = movement.normalized;
-        rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+        rb.velocity = new Vector2(direction.x * Player_Manager.speed, direction.y * Player_Manager.speed);
 
     }
 

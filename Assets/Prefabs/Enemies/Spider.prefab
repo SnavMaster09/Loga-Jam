@@ -110,8 +110,9 @@ GameObject:
   - component: {fileID: 8930968263237924366}
   - component: {fileID: 8930968263237924361}
   - component: {fileID: 8930968263237924360}
-  - component: {fileID: 1348563230156878312}
   - component: {fileID: 8930968263237924363}
+  - component: {fileID: 8065427307522480567}
+  - component: {fileID: 3826955793602013521}
   m_Layer: 9
   m_Name: SpiderBody
   m_TagString: Enemy
@@ -249,19 +250,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.57454205}
   m_EdgeRadius: 0
---- !u!114 &1348563230156878312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930968263237924362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11a136371f30c49d5a14328e662e2b7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spiderControllerScript: {fileID: 8930968263237924363}
 --- !u!114 &8930968263237924363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,10 +263,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooterScript: {fileID: 4112455631491971318}
-  enemyHealthScript: {fileID: 1348563230156878312}
+  enemyHealthScript: {fileID: 0}
   speed: 2
   biteDamage: 10
   step: 0
+  anim: {fileID: 8065427307522480567}
+  spr: {fileID: 8930968263237924357}
   canDealDamage: 1
   state: 0
   coll: {fileID: 8930968263237924360}
+--- !u!95 &8065427307522480567
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930968263237924362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b8a569a7269547498aab063787249f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3826955793602013521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930968263237924362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a136371f30c49d5a14328e662e2b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  health: 20
+  coins: 2
+  type: 1
+  toBeDestroyed: {fileID: 4112455632028507519}
+  spr: {fileID: 8930968263237924357}
+  spiderControllerScript: {fileID: 8930968263237924363}
