@@ -12,13 +12,20 @@ public class Player_Movement_Controller : MonoBehaviour
 
 
     private bool isFacingRight = true;
+    private bool isAttacking = false;
 
+    private int lastDir = 1;
+    //1=front 2=back 3=left 4=right 5=frontleft 6=frontright 7=backleft 8=backright
 
-    public enum State {idle,runSide,runBack,runFront,runBackSide,runFrontSide};
+    public enum State {idle,runSide,runBack,runFront,runBackSide,runFrontSide,attack};
     public State state;
 
-    
+    public GameObject angle;
 
+    private void Start()
+    {
+        //angle.SetActive(false);
+    }
 
     void Update()
     {
@@ -26,9 +33,28 @@ public class Player_Movement_Controller : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        //Debug.Log(state);
+
         Flip();
         VelocityStates();
-        
+        AttackStates();
+
+        if (lastDir == 1)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (lastDir == 2)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 180);
+        else if (lastDir == 3)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 270);
+        else if (lastDir == 4)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 90);
+        else if (lastDir == 5)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 225);
+        else if (lastDir == 6)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 135);
+        else if (lastDir == 7)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 315);
+        else if (lastDir == 8)
+            angle.transform.rotation = Quaternion.Euler(0, 0, 45);
     }
 
     private void FixedUpdate()
@@ -49,28 +75,79 @@ public class Player_Movement_Controller : MonoBehaviour
         }
     }
 
+    private void AttackStates()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Attack());
+        }
+    }
+
     private void VelocityStates()
     {
 
 
-        if (movement.x > 0 && movement.y == 0)
+        if (movement.x > 0 && movement.y == 0 && isAttacking == false)
+        {
             state = State.runSide;
-        else if (movement.x < 0 && movement.y == 0)
+            lastDir = 4;
+        }
+        else if (movement.x < 0 && movement.y == 0 && isAttacking == false)
+        {
             state = State.runSide;
-        else if (movement.y > 0 && movement.x > 0)
+            lastDir = 3;
+        }
+        else if (movement.y > 0 && movement.x > 0 && isAttacking == false)
+        {
             state = State.runBackSide;
-        else if (movement.y > 0 && movement.x < 0)
+            lastDir = 6;
+        }
+        else if (movement.y > 0 && movement.x < 0 && isAttacking == false)
+        {
             state = State.runBackSide;
-        else if (movement.y < 0 && movement.x > 0)
+            lastDir = 5;
+        }
+        else if (movement.y < 0 && movement.x > 0 && isAttacking == false)
+        {
             state = State.runFrontSide;
-        else if (movement.y < 0 && movement.x < 0)
+            lastDir = 8;
+        }
+        else if (movement.y < 0 && movement.x < 0 && isAttacking == false)
+        {
             state = State.runFrontSide;
-        else if (movement.y < 0 && movement.x == 0)
+            lastDir = 7;
+        }
+        else if (movement.y < 0 && movement.x == 0 && isAttacking == false)
+        {
             state = State.runFront;
-        else if (movement.y > 0 && movement.x == 0)
+            lastDir = 1;
+        }
+        else if (movement.y > 0 && movement.x == 0 && isAttacking == false)
+        {
             state = State.runBack;
-        else state = State.idle;
+            lastDir = 2;
+        }
+        else if (isAttacking == false)
+            state = State.idle;
 
+        
+
+        Debug.Log(lastDir);
         anim.SetInteger("state", (int)state);
+        angle.transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
+    //1=front 2=back 3=left 4=right 5=frontleft 6=frontright 7=backleft 8=backright
+
+    private IEnumerator Attack()
+    {
+        isAttacking = true;
+        state = State.attack;
+        angle.SetActive(true);
+        anim.SetInteger("state", (int)state);
+        
+        yield return new WaitForSeconds(0.25f);
+        angle.SetActive(false);
+        isAttacking = false;
     }
 }

@@ -19,7 +19,7 @@ public class Player_Manager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
     public void takeDamage(int damage)

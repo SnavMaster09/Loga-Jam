@@ -13,7 +13,10 @@ public class Destroyer : MonoBehaviour
                 if ((collision.gameObject.tag != "SpiderBullet"))
                 {
                     if ((collision.gameObject.tag != "CombatDetection"))
-                        Destroy(collision.gameObject);
+                        if ((collision.gameObject.tag != "Sword"))
+                        {
+                            Destroy(collision.gameObject);
+                        }
                 }
             }
         }

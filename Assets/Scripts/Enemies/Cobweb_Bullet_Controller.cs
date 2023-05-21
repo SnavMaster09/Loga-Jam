@@ -9,6 +9,7 @@ public class Cobweb_Bullet_Controller : MonoBehaviour
     public int bulletDamage = 10;
     public float force;
 
+
     // Start is called before the first frame update
     void Start()
     {
