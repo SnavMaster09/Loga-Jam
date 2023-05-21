@@ -17,7 +17,8 @@ public class Destroyer : MonoBehaviour
                         {
                             if ((collision.gameObject.tag != "EnemyTakingDamage"))
                                 if ((collision.gameObject.tag != "EnemyBody"))
-                                    Destroy(collision.gameObject);
+                                    if ((collision.gameObject.tag != "Arrow"))
+                                        Destroy(collision.gameObject);
                         }
                 }
             }

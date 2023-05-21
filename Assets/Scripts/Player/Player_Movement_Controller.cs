@@ -10,6 +10,8 @@ public class Player_Movement_Controller : MonoBehaviour
     private float moveSpeed = 5f;
     private Vector2 movement;
 
+    private bool canShoot;
+
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
@@ -17,13 +19,19 @@ public class Player_Movement_Controller : MonoBehaviour
     private bool isFacingRight = true;
     private bool isAttacking = false;
 
-    private int lastDir = 1;
+    private float timer;
+
+    public static int lastDir = 1;
     //1=front 2=back 3=left 4=right 5=frontleft 6=frontright 7=backleft 8=backright
 
     public enum State {idle,runSide,runBack,runFront,runBackSide,runFrontSide,attack};
     public State state;
 
     public GameObject angle;
+
+    public GameObject arrow;
+
+    public GameObject shootingPos;
 
     private void Start()
     {
@@ -36,7 +44,16 @@ public class Player_Movement_Controller : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        
+        timer += Time.deltaTime;
+
+        if(Input.GetMouseButtonUp(1))
+        {
+            if (timer >= 1.5f)
+            {
+                Instantiate(arrow, angle.transform.position, angle.transform.rotation);
+                timer = 0;
+            }
+        }
 
         Flip();
         VelocityStates();
