@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Enemy_Health : MonoBehaviour
 {
-    private int maxHealth = 20;
-    private  int health = 20;
+    public int maxHealth = 20;
+    public   int health = 20;
+    public int coins;
+
+    public int type;
+
+    public GameObject toBeDestroyed;
+    public SpriteRenderer spr;
 
     public Spider_Controller spiderControllerScript;
 
@@ -21,12 +27,15 @@ public class Enemy_Health : MonoBehaviour
 
     public  void takeDamage(int damage)
     {
-        spiderControllerScript.canDealDamage = false;
-        spiderControllerScript.switchColor();
+
+        if(type == 1)
+            spiderControllerScript.canDealDamage = false;
+        switchColor();
         health = health - damage;
         if (health <= 0)
         {
-            spiderControllerScript.state = Spider_Controller.State.die;
+            if(type == 1)
+                spiderControllerScript.state = Spider_Controller.State.die;
             StartCoroutine(Die());
         }
          
@@ -36,8 +45,22 @@ public class Enemy_Health : MonoBehaviour
     {
         
         yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        Player_Manager.coins += coins;
+        Destroy(toBeDestroyed);
+        
     }
-   
+
+    public void switchColor()
+    {
+        StartCoroutine(colorS());
+    }
+
+    private IEnumerator colorS()
+    {
+        spr.color = Color.red;
+        yield return new WaitForSeconds(0.75f);
+        spr.color = Color.white;
+    }
+
 
 }

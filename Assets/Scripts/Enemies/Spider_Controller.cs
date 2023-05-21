@@ -68,6 +68,7 @@ public class Spider_Controller : MonoBehaviour
 
     private void Flip()
     {
+        /*
         if (isFacingRight && target.transform.position.x - transform.position.x < 0f || !isFacingRight && target.transform.position.x - transform.position.x > 0f)
         {
             isFacingRight = !isFacingRight;
@@ -75,6 +76,7 @@ public class Spider_Controller : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+        */
     }
 
 
