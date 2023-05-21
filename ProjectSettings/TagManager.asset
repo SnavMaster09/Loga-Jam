@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - SpiderBullet
   - CombatDetection
+  - Sword
   layers:
   - Default
   - TransparentFX
