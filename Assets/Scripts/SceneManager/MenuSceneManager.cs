@@ -8,9 +8,14 @@ public class MenuSceneManager : MonoBehaviour
 {
     public void PlayGame()
     {
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.Click);
+        SceneManager.LoadScene("SampleScene");
+    }
 
-        SceneManager.LoadScene(1);
-
+    public void QuitGame()
+    {
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.Click);
+        Application.Quit();
     }
 
 
