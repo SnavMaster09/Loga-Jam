@@ -25,6 +25,12 @@ public class Enemy_Health : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Arrow")
+            takeDamage(Player_Manager.bowDamage);
+    }
+
     public  void takeDamage(int damage)
     {
 
