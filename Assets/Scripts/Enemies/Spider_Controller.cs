@@ -7,6 +7,8 @@ public class Spider_Controller : MonoBehaviour
 {
 
     public Spider_Shooter shooterScript;
+    public Enemy_Health enemyHealthScript;
+
 
     public float speed = 3f;
     public int biteDamage = 10;
@@ -14,6 +16,8 @@ public class Spider_Controller : MonoBehaviour
     public float step;
     private Transform target;
     private bool canFollow = true;
+
+    public bool canDealDamage = true;
 
     public enum State {chase,flee,idle};
     public State state;
@@ -46,9 +50,12 @@ public class Spider_Controller : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            FindAnyObjectByType<Player_Manager>().takeDamage(biteDamage);
+            if (canDealDamage == true)
+            {
+                FindAnyObjectByType<Player_Manager>().takeDamage(biteDamage);
+            }
             if (speed > 0)
             {
                 speed = -speed;
@@ -66,7 +73,8 @@ public class Spider_Controller : MonoBehaviour
 
         SpiderChaser();
 
-
+        if (state == State.idle)
+            canDealDamage = true;
     }
 
     private void SpiderChaser()

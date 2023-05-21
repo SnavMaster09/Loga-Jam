@@ -10,6 +10,8 @@ public class Player_Manager : MonoBehaviour
     private int maxHealth = 100;
     public static int health;
 
+    public static int swordDamage = 10;
+
     void Start()
     {
         activeCombat = false;
@@ -19,7 +21,7 @@ public class Player_Manager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(health);
+        Debug.Log(health);
     }
 
     public void takeDamage(int damage)

@@ -10,6 +10,9 @@ TagManager:
   - SpiderBullet
   - CombatDetection
   - Sword
+  - PlayerSword
+  - EnemyTakingDamage
+  - EnemyBody
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - Enemy
   - Player
   - Bullet
-  - 
+  - EnemyCheck
   - 
   - 
   - 

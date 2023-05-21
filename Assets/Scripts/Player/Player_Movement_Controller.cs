@@ -10,6 +10,9 @@ public class Player_Movement_Controller : MonoBehaviour
     private float moveSpeed = 5f;
     private Vector2 movement;
 
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
 
     private bool isFacingRight = true;
     private bool isAttacking = false;
@@ -77,7 +80,7 @@ public class Player_Movement_Controller : MonoBehaviour
 
     private void AttackStates()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isAttacking == false)
         {
             StartCoroutine(Attack());
         }
@@ -132,7 +135,7 @@ public class Player_Movement_Controller : MonoBehaviour
 
         
 
-        Debug.Log(lastDir);
+        
         anim.SetInteger("state", (int)state);
         angle.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
@@ -143,11 +146,32 @@ public class Player_Movement_Controller : MonoBehaviour
     {
         isAttacking = true;
         state = State.attack;
-        angle.SetActive(true);
-        anim.SetInteger("state", (int)state);
         
+        anim.SetInteger("state", (int)state);
+
+        
+
+        Collider2D[] hitEnemies =  Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy_Health>().takeDamage(Player_Manager.swordDamage);
+        }
+
         yield return new WaitForSeconds(0.25f);
-        angle.SetActive(false);
         isAttacking = false;
+        
     }
+
+    private void OnDrawGizmosSelected()
+    {
+
+        if (attackPoint == null)
+            return;  
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
 }
